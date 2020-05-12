@@ -2,8 +2,8 @@
 const api = new Api()
 
 async function fetchLogin() {
-    const email = "daniel@gmail.com"
-    const password = "danielzinho1234"
+    const email = "luizdaviinformatia@gmail.com"
+    const password = "deiv3silvaka"
 
     if(api.processDatas(email, password)){
         await api.fetchLogin(email, password)
@@ -11,5 +11,3 @@ async function fetchLogin() {
         alert("Digite um email válido")
     }
 }
-
-fetchLogin()

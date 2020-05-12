@@ -18,7 +18,31 @@ class Api{
     }
 
     fetchLogin(email, password) {
-        console.log("Buscando...")
+
+        this.email = email
+        this.password = calcSHA1(password)
+
+        const Email = this.email
+        const Password = this.password
+        console.log(Password)
+
+        let url = `${this.host}/Find?email=${Email}&password=${Password}`
+
+        fetch(url)
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            if(data[0]){
+                console.log(data[0].name)
+            }else{
+                console.log("não encontrei ninguem")
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+
     }
 
 }
