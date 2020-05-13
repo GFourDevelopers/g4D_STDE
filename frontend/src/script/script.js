@@ -2,8 +2,8 @@
 const api = new Api()
 
 async function fetchLogin() {
-    const email = "luizdaviinformatia@gmail.com"
-    const password = "deiv3silvaka"
+    const email = document.querySelector("#email").value
+    const password = document.querySelector("#password").value
 
     if(api.processDatas(email, password)){
         await api.fetchLogin(email, password)

@@ -5,6 +5,7 @@ class Api{
         this.email = ""
         this.password = ""
         this.host = "http://localhost:3000"
+        this.valid = ""
     }
 
     processDatas(email, password) {
@@ -17,10 +18,10 @@ class Api{
         return this.isValid
     }
 
-    fetchLogin(email, password) {
+    async fetchLogin(email, password) {
 
         this.email = email
-        this.password = calcSHA1(password)
+        this.password = await calcSHA1(password)
 
         const Email = this.email
         const Password = this.password
@@ -35,8 +36,11 @@ class Api{
         .then((data) => {
             if(data[0]){
                 console.log(data[0].name)
+                this.valid = true
+                alert("Login validado: Status " + this.valid)
             }else{
-                console.log("não encontrei ninguem")
+                alert("Usuário ou senha inválidos!")
+                this.valid = false
             }
         })
         .catch((err) => {

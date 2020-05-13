@@ -3,6 +3,7 @@
 <head>
     <link rel="icon" href="src/img/g4d.png" type="image/png" sizes="16x16"> 
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Bank - Sistema Integrado de Pré Processamento</title>
     <link rel="stylesheet" href="src/css/style.css">
@@ -11,5 +12,23 @@
     <script src="https://lig-membres.imag.fr/donsez/cours/exemplescourstechnoweb/js_securehash/sha1.js"></script>
     <script src="src/script/Api.js"></script>
     <script src="src/script/script.js"></script>
+
+    <div class="signup-form">
+
+		<form class="" action="index.html" method="post">
+
+			<div><img src="src/img/tec-bank.png" style="width: 200px;"></div>
+			<input id="email" type="email" placeholder="E-mail" class=" form-control txtb"  required="">
+			<input id="password" type="password" placeholder="Password" class=" form-control txtb"  required="">
+			<input type="button" onclick="fetchLogin()" value="avançar" class=" txtb btn btn-primary signup-btn">
+
+			<p>ou</p> 
+				
+				
+			<input type="submit" value="criar conta" class=" btn btn-defaut txtb  signup-btn2">
+
+		</form>
+
+    </div>
 </body>
 </html>
