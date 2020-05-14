@@ -2,6 +2,7 @@
 class Api{
 
     constructor() {
+        this.name = ""
         this.email = ""
         this.password = ""
         this.host = "http://localhost:3000"
@@ -47,6 +48,40 @@ class Api{
             console.log(err)
         })
 
+    }
+
+    async cadNewUser(name, email, password) {
+        this.name = name.toUpperCase()
+        this.email = email
+        this.password = await calcSHA1(password)
+
+        const Email = this.email
+        const Name = this.name
+        const Password = this.password
+
+        const url = `${this.host}/Store?name=${this.name}&password=${this.password}&email=${this.email}`
+
+        //const form = document.querySelector("form")
+        //form.action = url
+
+        fetch(url, {
+            mode:"cors",
+            method:"POST",
+            body: JSON.stringify({ Email, Name, Password})
+        })
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            if(!data[0].name){
+                alert("Algo deu errado")
+            }else{
+                alert(`Conta registrada`)
+            }
+        })
+        .catch((err) => {
+            console.log(`Erro: ${err}`)
+        })
     }
 
 }

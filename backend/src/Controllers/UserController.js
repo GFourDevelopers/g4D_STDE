@@ -9,8 +9,7 @@ module.exports = {
 
         let userData = await User.findAll({
             where: {
-                email,
-                password
+                email
             }
         })
 
