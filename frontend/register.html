@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scalable=1.0">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="src/css/cdp.css">
+	<title>Tech Bank - Sistema Integrado de Pré Processamento</title>
+</head>
+<body>
+
+    <script src="https://lig-membres.imag.fr/donsez/cours/exemplescourstechnoweb/js_securehash/sha1.js"></script>
+    <script src="src/script/Api.js"></script>
+    <script src="src/script/script.js"></script>
+
+	<header class="header">
+		<img src="src/img/tec-bank.png" alt="logo-tec-bank">
+		<nav class="menu">
+			<ul>
+			
+					<li><button><a href="index.html">Log In</a></button></li>
+			</ul>
+		</nav>
+	</header>
+	
+
+	<section>
+		<h1>Criando sua conta</h1>
+		<form method="post" action="">
+			<input type="name" id="Name" name="nome" placeholder="Seu Nome" class="form-control" required="" autofocus="" >
+			<input type="email" id="email" name="email" placeholder="E-mail" class="form-control" required="">
+			<input type="password" id="password" name="senha" placeholder="Senha" class="form-control">
+			<input type="password" id="password2" name="senha" placeholder="Digite sua senha novamente" class="form-control">
+			<input type="button" onclick="cadNewUser()" value="cadastre-se" class=" form-control2  btn btn-primary signup-btn" >
+
+
+
+		</form>
+	</section>
+
+</body>
+</html>

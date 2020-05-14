@@ -19,9 +19,12 @@ module.exports = {
                 email,
                 password
             })
+            console.log(userData.dataValues)
+            return res.json([userData.dataValues])
+        }else{
+            console.log(userData)
+            return res.json(userData)
         }
-
-        return res.json(userData)
 
     },
 
