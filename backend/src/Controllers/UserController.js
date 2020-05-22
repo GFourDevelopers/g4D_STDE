@@ -19,8 +19,7 @@ module.exports = {
                 email,
                 password
             })
-            console.log(userData.dataValues)
-            return res.json([userData.dataValues])
+            return res.json({ message: "criado" })
         }else{
             console.log(userData)
             return res.json(userData)

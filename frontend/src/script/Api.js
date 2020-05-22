@@ -40,6 +40,7 @@ class Api{
                 this.valid = true
                 alert("Login validado: Status " + this.valid)
                 localStorage.setItem("logad", "TRUE")
+                localStorage.setItem("email", this.email)
             }else{
                 alert("Usuário ou senha inválidos!")
                 this.valid = false
@@ -74,7 +75,7 @@ class Api{
             return response.json()
         })
         .then((data) => {
-            if(data[0].name){
+            if(data.message){
                 //alert(`Conta registrada`)
                 window.location.href = "cadastrofinal.html"
             }else{

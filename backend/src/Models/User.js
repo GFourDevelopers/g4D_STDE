@@ -2,6 +2,7 @@
 const db = require("../connection/connection")
 
 const User = db.sequelize.define("users", {
+    
     name: {
         type: db.Sequelize.STRING
     },
