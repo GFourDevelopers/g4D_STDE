@@ -39,8 +39,7 @@ class Api{
                 console.log(data[0].name)
                 this.valid = true
                 alert("Login validado: Status " + this.valid)
-                localStorage.setItem("logad", "TRUE")
-                localStorage.setItem("email", this.email)
+                window.location.href = "src/pages/dashboard.html"
             }else{
                 alert("Usuário ou senha inválidos!")
                 this.valid = false

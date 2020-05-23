@@ -31,15 +31,3 @@ async function cadNewUser() {
     }
 
 }
-
-async function logadState() {
-    if(localStorage.getItem("logad")) {
-        if(localStorage.getItem("logad") === "TRUE") {
-            alert("Logado")
-        }
-    }else{
-        localStorage.setItem("logad", "FALSE")
-    }
-}
-
-logadState()

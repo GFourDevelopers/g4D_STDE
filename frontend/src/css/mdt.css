@@ -1,0 +1,43 @@
+body{
+	background-color: #b2bec3;
+	
+
+}
+header{
+	
+
+	background-color: #f5f5f5;
+	box-shadow: 1px -1px  100px black;
+	
+}
+header hr{
+	width:200px;
+}
+#header img{
+	margin-top: 10px;
+	width: 200px;
+}
+section{
+	
+	width: 1000px;
+	margin: 0 auto;
+	margin-top: 100px;
+	padding: 60px;
+	font-family:'Manrope', sans-serif;
+	background-color: #fff;
+	border: none;
+	box-shadow: 1px -1px  100px #f5f5f5;
+}
+section h1{
+	text-align: center;
+	margin-bottom: 20px;
+}
+section hr {
+	width: 200px;
+
+}
+section p{
+	font-family: 'Manrope', sans-serif;
+	text-align: center;
+	font-size: 100%;
+}
