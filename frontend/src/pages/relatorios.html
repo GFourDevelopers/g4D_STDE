@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scalable=1.0">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../css/relatorios.css"> 
+	<title>Relatorio de vendas Tech-Bank</title>
+
+<body>
+
+	<script src="../script/Api.js"></script>
+
+	<header >
+		<img src="../img/tec-bank.png"alt="tec-bank">
+			<ul>
+					<li><a href="#"> Quem Somos</a></li>
+					<li><a href="#"> Nossos Serviço</a></li>
+					<li><a href="#"> Sugestões</a></li>
+					<li><a href="#"> Fale Conosco</a></li>
+					<button class="btn btn-primary">Login</button>
+					
+			</ul>
+	</header>
+	<section>
+		<div class="rell">
+			<h1>Relatorios</h1>
+			<hr>
+		</div>
+		<div class="area">
+			<div class="container">
+				<h4>Nome da empresa</h4>
+				<input class="emp" type="name" name="Nome" id="placeName" placeholder="Your-name">
+				<button class=" btn-rlt btn btn-primary" onclick="searchCompany()">Search</button>
+			</div>
+			<div class="transfer-area" id="transfer-area">
+				
+			</div>
+			<div class="footer">
+				<h6>Boletos</h6>
+				<input type="number" id="billetId" class="standard" readonly>
+				<h6>Valor</h6>
+				<input type="number" id="billetPrice" class="standard" readonly>
+				<h6>Taxas</h6>
+				<input type="number" id="billetTaxa" class="standard" readonly>
+				<h6> Total</h6>
+				<input type="number" id="billetTotalValue" class="standard-total" readonly>
+				<button class=" paypal btn btn-success" onclick="pago()">Pagos</button>
+				
+			</div>
+			
+		</div>
+
+	</section>
+
+	<script>
+
+		const api = new Api()
+
+		function init() {
+
+			if(!localStorage.getItem("placeName")){
+				const placeName = prompt("Para agilizarmos suas tarefas, por favor, digite o nome da sua empresa")
+				localStorage.setItem("placeName", placeName.toLocaleUpperCase())
+				document.getElementById("placeName").value = `${placeName.toLocaleUpperCase()}`
+			}else{
+				document.getElementById("placeName").value = localStorage.getItem("placeName")
+			}
+
+		}
+
+		async function pago() {
+			const id = document.getElementById("billetId").value
+			if(id !== ""){
+				await api.payBillet(id)
+			}else{
+				alert("pesquise pelos seus boletos e depois clique em 'Exibir valores'")
+			}
+		}
+
+		function searchCompany() {
+			const company = localStorage.getItem("placeName")
+			api.searchCompany(company)
+		}
+
+		init()
+
+	</script>
+
+</body>
+</html>

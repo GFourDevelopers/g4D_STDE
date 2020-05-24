@@ -1,0 +1,130 @@
+	_*{
+			margin: 0;
+			padding: 0;
+
+		}
+		header{
+			width: 100%;
+			height: 120px;
+			background-color: #cdcdcd;
+			display: flex;
+			justify-content: space-between;
+
+		}	
+		header img{
+
+			width: 200px;
+
+		}
+		header ul{
+			list-style: none;
+			display: flex;
+			align-items: center;
+		}
+		header ul li{
+			margin-right: 25px;
+		}
+		header ul li a{
+			padding: 10px;
+			
+			color: black;
+
+			font-family: Manrope;
+
+		}
+		header ul li a:hover{
+			text-decoration: none;
+			color: #000;
+			font-weight: bold;
+		}
+		header ul button{
+			width: 100px;
+			margin-right: 10px;
+		}
+
+  			.rell{
+
+  				text-align: center;
+  			}
+  			.rell h1{
+  				margin-top: 50px;
+  				font-family: Manrope; 
+
+  			}
+  			.rell hr{
+  				width: 400px;
+  				background:#c9c9c9;
+  			}
+  			.area{
+  				width: 100%;
+  				height: 700px;
+  				background-color: #0984e3;
+  			}
+		.area .container{
+			display: flex;
+			
+
+		}
+		.area  h4{
+			font-family:sans-serif;
+			font-size: 1.2rem;
+			font-weight: bold;
+			color: #fff;
+			margin-top: 40px;
+		}
+		.area .container .emp{
+			margin-top: 30px;
+			margin-right: 10px;
+			margin-left: 10px;
+			width: 400px;
+			border:  none;
+			border-radius: 14px
+		}
+		.area .container .btn-rlt{
+			background-color: #fff;
+			color:  #000;
+			font-family: manrope;
+			margin-top: 30px;
+			width: 200px;
+			height: 40px;
+
+		}
+		.transfer-area{
+			width: 100%;
+			height: 500px;
+			margin-top: 40px;
+			background-color: #fff; 
+		}
+		.footer{
+			display: flex;
+		}
+		.footer h6{
+			margin-top: 40px;
+			margin-left: 10px;
+
+		}
+		.footer .standard{
+			width: 100px;
+			height: 40px;
+			margin-top: 28px;
+			margin-left: 10px;
+			border-radius: 14px;
+			border: none;
+		}
+		.footer .standard-total{
+			width: 300px;
+			height: 40px;
+
+			margin-top: 28px;
+			margin-left: 10px;
+			border-radius: 14px;
+			border:none;
+		}
+		.footer .paypal{
+			margin-left: 10px;
+			height: 45px;
+			margin-top: 25px;
+			width: 140px;
+			font-family: Manrope;
+			font-size: 1.2rem;
+		}

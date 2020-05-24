@@ -1,4 +1,68 @@
+let ARRAYDATA = []
 
+let num = -1
+
+function prepareAndPrintBillets(data) {
+    console.log(`dados recolhidos`)
+    console.log(data)
+
+    ARRAYDATA = []
+    num = -1
+
+    let html = `<table border="1" style="width:100%; text-align:center;">`
+
+            html += "<tr>"
+                html += `<th>Banco</th>`
+                html += `<th>Codigo de barra</th>`
+                html += `<th>CPF/CNPJ</th>`
+                html += `<th>Pagador</th>`
+                html += `<th>Beneficiário</th>`
+                html += `<th>Expira em</th>`
+                html += `<th>Hoje</th>`
+                html += `<th>Visualizar</th>`
+            html += "</tr>"
+
+    for(let index in data){
+
+        num++
+        ARRAYDATA.push(data[index])
+
+            html += "<tr>"
+                html += `<td id="index${num}">${data[index].bankName}</td>`
+                html += `<td id="index${num}">${data[index].barCode}</td>`
+                html += `<td id="index${num}">${data[index].identify}</td>`
+                html += `<td id="index${num}">${data[index].payer}</td>`
+                html += `<td id="index${num}">${data[index].recipient}</td>`
+                html += `<td id="index${num}">${data[index].expDate}</td>`
+                html += `<td id="index${num}">${data[index].today}</td>`
+                html += `<td><button onclick="exibir(${num})" style="width:100%; height:100%;">Exibir valores</button></td>`
+            html += "</tr>"
+
+    }
+
+    html += "</table>"
+
+    printData("transfer-area", html)
+
+}
+
+function printData(id, html){
+    document.getElementById(id).innerHTML = `<center>${html}</center>`
+}
+
+function exibir(number) {
+    document.getElementById("billetId").value = ARRAYDATA[number].id
+    document.getElementById("billetPrice").value = ARRAYDATA[number].price
+    document.getElementById("billetTaxa").value = ARRAYDATA[number].taxa
+    document.getElementById("billetTotalValue").value = ARRAYDATA[number].totalValue
+}
+
+function clear() {
+    document.getElementById("billetId").value = ""
+    document.getElementById("billetPrice").value = ""
+    document.getElementById("billetTaxa").value = ""
+    document.getElementById("billetTotalValue").value = ""
+}
 class Api{
 
     constructor() {
@@ -7,6 +71,7 @@ class Api{
         this.password = ""
         this.host = "http://localhost:3000"
         this.valid = ""
+        this.placeName = ""
     }
 
     processDatas(email, password) {
@@ -83,6 +148,50 @@ class Api{
         })
         .catch((err) => {
             console.log(`Erro: ${err}`)
+        })
+    }
+
+    searchCompany(placeName) {
+        this.placeName = placeName
+
+        const url = `${this.host}/catchBillet?placeName=${this.placeName}`
+
+        fetch(url)
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            console.log(`dados recolhidos`)
+            console.log(data)
+            if(data[0]){
+                prepareAndPrintBillets(data)
+            }else{
+                alert("Nenhum boleto cadastrado")
+            }
+        })
+        .catch((err) => {
+            //alert("Algum erro ocorreu, digite o nome da empresa cadastrado nos boletos")
+            console.log(err)
+        })
+
+    }
+
+    payBillet(id) {
+        const url = `${this.host}/finalizeBillet?id=${id}`
+
+        fetch(url)
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            alert("Boleto finalizado")
+            printData("transfer-area", "")
+            this.searchCompany(localStorage.getItem("placeName"))
+            clear()
+        })
+        .catch((err) => {
+            alert("Algum erro ocorreu")
+            console.log(err)
         })
     }
 
