@@ -50,12 +50,43 @@ module.exports = {
 
         const billets = await Billet.findAll({
             where: {
-                placeName
+                placeName,
+                status: "A PAGAR"
             }
         })
 
         return res.json(billets)
 
-    } 
+    },
+
+    async finalizeBillets(req, res) {
+
+        const { id } = req.query
+
+        const billet = await Billet.update({
+            status: "PAGO"
+        }, {
+            where: {
+                id
+            }
+        })
+
+        return res.json(billet)
+
+    },
+
+    async deleteBillet(req, res){
+
+        const { id } = req.query
+
+        const billet = await Billet.destroy({
+            where: {
+                id
+            }
+        })
+
+        return res.json(billet)
+
+    }
 
 }

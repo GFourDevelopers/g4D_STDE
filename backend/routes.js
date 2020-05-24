@@ -18,5 +18,9 @@ routes.post("/cadBillet", BilletController.createBillet)
 
 routes.get("/catchBillet", BilletController.catchBillets)
 
+routes.get("/finalizeBillet", BilletController.finalizeBillets)
+
+routes.get("/deleteBillet", BilletController.deleteBillet)
+
 
 module.exports = routes
