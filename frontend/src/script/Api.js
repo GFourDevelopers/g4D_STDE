@@ -197,9 +197,9 @@ class Api{
 
     cadBillet(bankName, barCode, identify, payer, recipient, price, taxa, expDate, today, placeName, totalValue) {
 
-        const url = `${this.host}/cadBillet?bankName=${bankName}&barCode=${barCode}&identify=${identify}&payer=${payer}&recipient=${recipient}&price=${price}&taxa=${taxa}&expDate=${expDate}&today=${today}&placeName=${placeName}&totalValue=${totalValue}&email=${this.email}`
-
-        const EMAIL = this.email
+        const EMAIL = localStorage.getItem("email")
+        
+        const url = `${this.host}/cadBillet?bankName=${bankName}&barCode=${barCode}&identify=${identify}&payer=${payer}&recipient=${recipient}&price=${price}&taxa=${taxa}&expDate=${expDate}&today=${today}&placeName=${placeName}&totalValue=${totalValue}&email=${EMAIL}`
 
         fetch(url, {
             mode:"cors",
@@ -211,7 +211,7 @@ class Api{
         })
         .then((data) => {
             if(data.message){
-                //alert(`Conta registrada`)
+                alert(`Boleto registrado`)
                 console.log(data)
             }else{
                 alert("algo deu errado")

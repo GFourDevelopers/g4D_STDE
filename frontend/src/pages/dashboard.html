@@ -14,7 +14,11 @@
         
         function logout() {
             window.location.href = "../../index.html"
-        }
+		}
+		
+		function devAlert() {
+			alert("Esta funcionalidade ainda não esta disponível, entre em contato e peça seu suporte e nós vamos lhe atender :)")
+		}
 
     </script>
 
@@ -38,20 +42,16 @@
 			
 				<ul>
 					<li><a href="relatorios.html"><img src="../img/papel.png " width="150px;" height="150px"></a><p>relatorio</p></li>
-					<li><a href=""><img src="../img/boletin.png " width="150px;" height="150px" ></a><p>boletos</p></li>
-					<li><a href=""><img src="../img/celular.png " width="100px;" height="150px" ></a><p>Recarga de Celular</p></li>
+					<li><a href="cadBillets.html"><img src="../img/boletin.png " width="150px;" height="150px"></a><p>boletos</p></li>
+					<li><a href=""><img src="../img/celular.png " width="100px;" height="150px" onclick="devAlert()"></a><p>Recarga de Celular</p></li>
 
 				</ul>
 				<ul>
-					<li><a href=""><img src="../img/enrolado.png " width="100px;" height="100px"></a><p>Pagamentos</p></li>
+					<li><a href=""><img src="../img/enrolado.png " width="100px;" height="100px" onclick="devAlert()"></a><p>Pagamentos</p></li>
 					<li><a href=""><img src="../img/cospe.png " width="100px;"
-						height="100px"></a><p>Saques</p></li>
-					<li><a href=""><img src="../img/foto.png " width="100px;" height="100px"></a><p>Deposito</p></li>
+						height="100px" onclick="devAlert()"></a><p>Saques</p></li>
+					<li><a href=""><img src="../img/foto.png " width="100px;" height="100px" onclick="devAlert()"></a><p>Deposito</p></li>
 				</ul>
-				
-				
-			
-				
 			
 		</section>
 		
@@ -60,17 +60,17 @@
 		<label id="icone" for="check"><img src="../img/icone.png"></label>
 		<div class="barra">
 			<nav>
-				<a href=""><div class="link">Relatorios</div></a>
+				<a href="relatorios.html"><div class="link">Relatorios</div></a>
 				<a href=""><div class="link">Serviços</div></a>
 				<ul>
-					<li><a href=""> Pagamentos de Boletos</a></li>
+					<li><a href="cadBillets.html"> Pagamentos de Boletos</a></li>
 					<li><a href="">Deposito e Saques</a></li>
 					<li><a href="">Recarga de Celular</a></li>
 					<li><a href="">Gerenciamento de Conta</a></li>
 					<li><a href="">Alerta de Pagamentos</a></li>
 					<li><a href="">Gerar Cobranças</a></li>
 					<li><a href="">Gerar Meu Pagamento do Sistema</a></li>
-					<li><a href="">Baixa dos Boletos Processados</a></li>
+					<li><a href="relatorios.html">Baixa dos Boletos Processados</a></li>
 					<button class="btn btn-primary" onclick="logout()"> Sair da Conta</button>
 				</ul>
 			</nav>

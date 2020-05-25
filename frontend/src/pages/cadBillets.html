@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de boletos</title>
+    <link rel="stylesheet" href="../css/cadB.css">
+</head>
+<body>
+
+    <script src="../script/Api.js"></script>
+
+    <header>
+
+        <div class="logo">
+
+            <img src="../img/tec-bank.png" width="200px;">
+
+            <h1 style="position: absolute; left:35%; top:15px;">CADASTRO DE BOLETOS</h1>
+
+        </div>
+
+    </header>
+    
+    <div id="cadBilletForm">
+
+        <center><h2>DIGITE OS DADOS CORRETAMENTE</h2></center>
+
+        <center>
+
+            <div id="formList">
+
+                <!-- <label><p></p><input type="" placeholder=""></label> -->
+
+                <label><p>NOME DO BANCO</p><input type="text" required="" id="bankName" placeholder="NOME DO BANCO"></label>
+
+                <label><p>CÓDIGO DE BARRA</p><input type="text" required="" id="barCode" placeholder="CÓDIGO DE BARRAS"></label>
+
+                <label><p>CPF/CNPJ ( com pontos e traços )</p><input type="text" required="" id="identify" placeholder="CPF/CNPJ"></label>
+
+                <label><p>PAGADOR</p><input type="text" required="" id="payer" placeholder="NOME DO PAGADOR"></label>
+
+                <label><p>BENEFICIÁRIO</p><input type="text" required="" id="recipient" placeholder="NOME DO BENEFICIÁRIO"></label>
+
+                <label><p>VALOR DO BOLETO</p><input type="number" required="" id="price" placeholder="VALOR DO BOLETO"></label>
+
+                <label><p>VALOR DA TAXA ( em reais )</p><input type="number" required="" id="taxa" placeholder="VALOR DA TAXA" value="0"></label>
+
+                <label><p>DATA DE EXPIRAÇÃO</p><input type="date" required="" id="expDate" placeholder="DATA DE EXPIRAÇÃO"></label>
+
+                <label><p>DATA DO PAGAMENTO</p><input type="text" required="" id="today" readonly placeholder="DATA DO PAGAMENTO"></label>
+
+                <label><p>VALOR TOTAL DO BOLETO</p><input type="number" required="" id="totalValue" placeholder="VALOT TOTAL"></label>
+
+                <br>
+
+                <button id="calcValue" onclick="calcValue()">CALCULAR VALOR</button>
+                <button id="saveBillet" onclick="saveBillet()" style="display: none;">SALVAR BOLETO</button>
+
+            </div>
+
+        </center>
+
+    </div>
+
+    <div id="billetView" style="display: none;">
+
+        <center>
+
+            <h3>PAGAMENTO REALIZADO</h3>
+            <p>--------------------------------------------------------------------------------------------</p>
+            <label><w>nós da </w><input type="text" class="default" id="place" placeholder="nome da empresa"> <w> agradescemos a sua preferência</w></label>
+            <p>--------------------------------------------------------------------------------------------</p>
+
+            <label><input type="text" class="default" id="recebe" placeholder="quem recebe o dinheiro"> <w> recebeu o pagamento de </w> <input type="text" class="default" id="pagador" placeholder="pagador"> <w> com o valor de </w> <input type="text" class="default" id="valorConta" placeholder="valor"></label>
+            <p>--------------------------------------------------------------------------------------------</p>
+
+            <label><w>data de expiração </w><input type="text" class="default" id="expira" placeholder="expira em"></label>
+
+            <label><w>data do pagamento </w><input type="text" class="default" id="hojee" placeholder="hoje é"></label><br>
+
+            <button onclick="imprime()">IMPRIMIR COMPROVANTE</button>
+
+        </center>
+
+    </div>
+
+    <script>
+
+        const api = new Api()
+
+        function dateToday(){
+            const date = new Date()
+
+            let day = date.getDate()
+
+            if(day < 10){
+                day = `0${day}`
+            }
+
+            let mounth = date.getMonth() + 1
+
+            if(mounth < 10){
+                mounth = `0${mounth}`
+            }
+
+            const year = date.getUTCFullYear()
+
+            document.getElementById("today").value = `${day}/${mounth}/${year}`
+        }
+
+        function init() {
+            if(!localStorage.getItem("placeName")){
+				const placeName = prompt("Para agilizarmos suas tarefas, por favor, digite o nome da sua empresa")
+                localStorage.setItem("placeName", placeName.toLocaleUpperCase())
+                
+                const email = prompt("Para agilizarmos suas tarefas, por favor, digite o seu email")
+				localStorage.setItem("email", email)
+            }
+            
+            dateToday()
+        }
+
+        function changeDisplay(item){
+            if(item.style.display === "none"){
+                item.style.display = "block"
+            }else{
+                item.style.display = "none"
+            }
+        }
+
+        function calcValue() {
+            const billetValue = parseFloat(document.getElementById("price").value)
+
+            const taxa = parseFloat(document.getElementById("taxa").value)
+
+            if(!billetValue || billetValue <= 0){
+                alert("Defina os valores corretamente do preço do boleto")
+            }else{
+
+                if(!taxa){
+                    document.getElementById("totalValue").value = billetValue
+                }else{
+                    document.getElementById("totalValue").value = billetValue + taxa
+                }
+
+                changeDisplay(document.getElementById("calcValue"))
+                changeDisplay(document.getElementById("saveBillet"))
+            }
+        }
+
+        function saveBillet() {
+            const bankName = document.getElementById("bankName").value
+            const barCode = document.getElementById("barCode").value
+            const identify = document.getElementById("identify").value
+            const payer = document.getElementById("payer").value
+            const recipient= document.getElementById("recipient").value
+            const price = document.getElementById("price").value
+            const taxa = document.getElementById("taxa").value
+            const expDate= document.getElementById("expDate").value
+            const today = document.getElementById("today").value
+            const totalValue = document.getElementById("totalValue").value
+            const placeName = localStorage.getItem("placeName")
+
+            api.cadBillet(bankName, barCode, identify, payer, recipient, price, taxa, expDate, today, placeName, totalValue)
+            changeDisplay(document.getElementById("cadBilletForm"))
+            changeDisplay(document.getElementById("billetView"))
+            billet(bankName, barCode, identify, payer, recipient, price, taxa, expDate, today, placeName, totalValue)
+
+        }
+
+        function billet(bankName, barCode, identify, payer, recipient, price, taxa, expDate, today, placeName, totalValue){
+            document.getElementById("place").value = placeName
+            document.getElementById("recebe").value = bankName
+            document.getElementById("pagador").value = payer
+            document.getElementById("valorConta").value = price
+            document.getElementById("expira").value = expDate
+            document.getElementById("hojee").value = today
+        }
+
+        function imprime() {
+            window.print()
+        }
+
+        init()
+
+    </script>
+    
+</body>
+</html>

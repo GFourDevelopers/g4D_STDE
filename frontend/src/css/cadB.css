@@ -1,0 +1,43 @@
+
+header{
+	height: 100px;
+	background-color: #cdcdcd;
+	display: flex;
+	justify-content: space-between;
+}
+
+#cadBilletForm{
+    padding: 30px;
+}
+
+#formList{
+    padding: 30px;
+}
+
+input{
+    width:300px;
+    height:30px;
+    text-align: center;
+    border:2px solid black;
+    border-radius: 4px;
+}
+
+label{
+    margin-top: 12px;
+}
+
+button{
+    width: 260px;
+    height:30px;
+    text-align: center;
+    border:2px solid black;
+    border-radius: 4px;
+    margin-top: 40px;
+    font-weight: bold;
+}
+
+.default{
+    border:0px;
+    width:170px;
+    height:40px;
+}
