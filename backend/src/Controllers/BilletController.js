@@ -6,7 +6,7 @@ module.exports = {
 
     async createBillet(req, res) {
 
-        const { bankName, barCode, identify, payer, recipient, price, taxa, expDate, status, email, today, placeName, totalValue } = req.query
+        const { bankName, barCode, identify, payer, recipient, price, taxa, expDate, email, today, placeName, totalValue } = req.query
 
         try{
 
@@ -27,7 +27,7 @@ module.exports = {
                     price,
                     taxa,
                     expDate,
-                    status,
+                    status: "A PAGAR",
                     today,
                     placeName,
                     totalValue

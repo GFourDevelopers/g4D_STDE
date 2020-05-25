@@ -195,4 +195,32 @@ class Api{
         })
     }
 
+    cadBillet(bankName, barCode, identify, payer, recipient, price, taxa, expDate, today, placeName, totalValue) {
+
+        const url = `${this.host}/cadBillet?bankName=${bankName}&barCode=${barCode}&identify=${identify}&payer=${payer}&recipient=${recipient}&price=${price}&taxa=${taxa}&expDate=${expDate}&today=${today}&placeName=${placeName}&totalValue=${totalValue}&email=${this.email}`
+
+        const EMAIL = this.email
+
+        fetch(url, {
+            mode:"cors",
+            method:"POST",
+            body: JSON.stringify({ bankName, barCode, identify, payer, recipient, price, taxa, expDate, today, placeName, totalValue, EMAIL })
+        })
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            if(data.message){
+                //alert(`Conta registrada`)
+                console.log(data)
+            }else{
+                alert("algo deu errado")
+            }
+        })
+        .catch((err) => {
+            console.log(`Erro: ${err}`)
+        })
+
+    }
+
 }
