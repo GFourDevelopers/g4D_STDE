@@ -110,7 +110,7 @@
         }
 
         function init() {
-            if(!localStorage.getItem("placeName")){
+            if(!localStorage.getItem("placeName") || !localStorage.getItem("email")){
 				const placeName = prompt("Para agilizarmos suas tarefas, por favor, digite o nome da sua empresa")
                 localStorage.setItem("placeName", placeName.toLocaleUpperCase())
                 
